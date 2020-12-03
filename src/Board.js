@@ -82,14 +82,14 @@
     // var board = new Board({n : 4}); it will create empty 4 x 4 board
     // to access the row, board.get(0) -> first row
 
-
+    // Time Complexity: O(n)
     hasRowConflictAt: function(rowIndex) {
       var row = this.rows()[rowIndex];
 
       return _.filter(row, (elem) => elem === 1).length > 1;
     },
 
-    // test if any rows on this board contain conflicts
+    // Time Complexity: O(n^2)
     hasAnyRowConflicts: function() {
       var boardLength = this.rows().length;
 
@@ -108,6 +108,8 @@
     // --------------------------------------------------------------
     //
     // test if a specific column on this board contains a conflict
+
+    // Time Complexity: O(n)
     hasColConflictAt: function(colIndex) {
       var pieceCount = 0;
       var board = this.rows();
@@ -124,7 +126,7 @@
       return false;
     },
 
-    // test if any columns on this board contain conflicts
+    // Time Complexity: O(n^2)
     hasAnyColConflicts: function() {
       var boardLength = this.rows().length;
 
@@ -144,7 +146,7 @@
     //
     // test if a specific major diagonal on this board contains a conflict
 
-
+    // Time Complexity: O(n)
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       let column = majorDiagonalColumnIndexAtFirstRow;
       let pieceCount = 0;
@@ -157,7 +159,7 @@
       return pieceCount > 1;
     },
 
-    // test if any major diagonals on this board contain conflicts
+    // Time Complexity: O(n^2)
     hasAnyMajorDiagonalConflicts: function() {
       const board = this.rows();
       for (let i = -0.5 * board.length; i < board.length - 1; i++) {
@@ -175,6 +177,7 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
 
+    // Time Complexity: O(n)
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       let column = minorDiagonalColumnIndexAtFirstRow;
       let pieceCount = 0;
@@ -187,7 +190,7 @@
       return pieceCount > 1;
     },
 
-    // test if any minor diagonals on this board contain conflicts
+    // Time Complexity: O(n^2)
     hasAnyMinorDiagonalConflicts: function() {
       const board = this.rows();
       for (let i = board.length * 1.5 - 1; i > 0; i--) {
