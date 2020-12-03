@@ -21,7 +21,6 @@ describe('solvers', function() {
   });
 
   describe('countNRooksSolutions()', function() {
-    this.timeout(15000);
     it('finds the number of valid solutions for n of 1-8', function() {
       _.range(1, 9).map(function(n) {
         var solutionCount = countNRooksSolutions(n);

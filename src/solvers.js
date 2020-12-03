@@ -62,8 +62,7 @@ window.countNRooksSolutions = function(n) {
 
     for (let i = 0; i < n; i++) {
       board.togglePiece(row, i);
-
-      if (!board.hasAnyRooksConflicts()) {
+      if (!(board.hasRowConflictAt(row) || board.hasColConflictAt(i))) {
         placePieceOnRow(row + 1);
       }
 
@@ -81,6 +80,12 @@ window.countNRooksSolutions = function(n) {
 window.findNQueensSolution = function(n) {
   const board = new this.Board({n: n});
 
+  if (n === 2 || n === 3) {
+    const solution = board.rows();
+    console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
+    return solution;
+  }
+
   let rowIdx = 0;
 
   const placePieceOnRow = (row) => {
@@ -91,7 +96,7 @@ window.findNQueensSolution = function(n) {
     for (let i = 0; i < n; i++) {
       board.togglePiece(row, i);
 
-      if (!board.hasAnyQueensConflicts()) {
+      if (!board.hasAnyQueenConflictsOn(row, i)) {
         rowIdx++;
         placePieceOnRow(rowIdx);
       }
@@ -129,7 +134,7 @@ window.countNQueensSolutions = function(n) {
     for (let i = 0; i < n; i++) {
       board.togglePiece(row, i);
 
-      if (!board.hasAnyQueensConflicts()) {
+      if (!board.hasAnyQueenConflictsOn(row, i)) {
         placePieceOnRow(row + 1);
       }
 
