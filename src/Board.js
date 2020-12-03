@@ -45,8 +45,8 @@
       return (
         this.hasRowConflictAt(rowIndex) ||
         this.hasColConflictAt(colIndex) ||
-        this.hasMajorDiagonalConflictAt(this._getFirstRowColumnIndexForMajorDiagonalOn(rowIndex, colIndex)) ||
-        this.hasMinorDiagonalConflictAt(this._getFirstRowColumnIndexForMinorDiagonalOn(rowIndex, colIndex))
+        this.hasMajorDiagonalConflictAt(rowIndex, colIndex) ||
+        this.hasMinorDiagonalConflictAt(rowIndex, colIndex)
       );
     },
 
@@ -221,10 +221,7 @@
     hasMinorDiagonalConflictAt: function(row, col) {
       let pieceCount = 0;
       const board = this.rows();
-      //[0, 0, 0, 0],
-      //[0, 0, 0, 0],
-      //[0, 0, 0, 0],
-      //[0, 0, 0, 0]
+
 
       for (let i = 0; row + i < board.length && col - i >= 0; i++) {
         if (board[row + i][col - i] === 1) {
